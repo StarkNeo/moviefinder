@@ -1,3 +1,5 @@
+
+
 //----------------FUNCTIONS--------------------------
 // Populate dropdown menu with all the available genres
 const populateGenreDropdown = (genres) => {
@@ -107,7 +109,7 @@ const playBtn = document.getElementById('playBtn');
 
 const getGenres = async () => {
   try {
-    const response = await fetch("https://moviefinder-oxca.onrender.com/genres");
+    const response = await fetch(`${process.env.URL_BACKEND}/genres`);
     let json = await response.json();
     console.log(json.message);
     populateGenreDropdown(json.message)
@@ -120,7 +122,7 @@ getGenres();
 
 const getMovies = async () => {
   const selectedGenre = getSelectedGenre();
-  let url = "https://moviefinder-oxca.onrender.com/movies";
+  let url = `${process.env.URL_BACKEND}/movies`;
   let init = {
     method: 'POST',
     body: JSON.stringify({selectedGenre}),
@@ -142,7 +144,7 @@ const getMovieInfo = async (movie) => {
   console.log(movie);
   let movieId = movie.id;
 
-  let url = "https://moviefinder-oxca.onrender.com/movie/info";
+  let url = `${process.env.URL_BACKEND}/movie/info`;
   let init = {
     method: "POST",
     body: JSON.stringify({movieId}),
