@@ -109,9 +109,8 @@ const playBtn = document.getElementById('playBtn');
 
 const getGenres = async () => {
   try {
-    const response = await fetch(`${process.env.URL_BACKEND}/genres`);
+    const response = await fetch("https://moviefinder-oxca.onrender.com/genres");
     let json = await response.json();
-    console.log(json.message);
     populateGenreDropdown(json.message)
     return json.message;
   } catch (error) {
@@ -122,7 +121,7 @@ getGenres();
 
 const getMovies = async () => {
   const selectedGenre = getSelectedGenre();
-  let url = `${process.env.URL_BACKEND}/movies`;
+  let url = "https://moviefinder-oxca.onrender.com/movies";
   let init = {
     method: 'POST',
     body: JSON.stringify({selectedGenre}),
@@ -132,7 +131,6 @@ const getMovies = async () => {
   try {
     let response = await fetch(url, init);
     let json = await response.json();
-    console.log(json.movies);
     return json.movies;
   } catch (error) {
     console.log(error);
@@ -141,10 +139,9 @@ const getMovies = async () => {
 };
 //getMovies();
 const getMovieInfo = async (movie) => {
-  console.log(movie);
   let movieId = movie.id;
 
-  let url = `${process.env.URL_BACKEND}/movie/info`;
+  let url = "https://moviefinder-oxca.onrender.com/movie/info";
   let init = {
     method: "POST",
     body: JSON.stringify({movieId}),
@@ -155,7 +152,6 @@ const getMovieInfo = async (movie) => {
   try {
     let response = await fetch(url, init);
     let json = await response.json();
-    console.log(json)
     return json.info;
   } catch (error) {
     console.log(error);
@@ -171,9 +167,7 @@ const showRandomMovie = async () => {
 
   };
   const movies = await getMovies();
-  console.log(movies)
   const randomMovie = await getRandomMovie(movies);
-  console.log(randomMovie);
   const info = await getMovieInfo(randomMovie);
   displayMovie(info);
 
