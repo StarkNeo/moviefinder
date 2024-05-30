@@ -15,6 +15,9 @@ app.listen(PORT, () => {
     console.log("server rised");
 })
 
+app.get("/",(req, res)=>{
+    open("./index.html")
+})
 app.get("/genres", async (req, res) => {
     let genreRequestEndpoint = '/genre/movie/list';
     let requestParams = '?api_key=' + process.env.API_KEY;
