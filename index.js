@@ -16,7 +16,7 @@ app.listen(PORT, () => {
 })
 
 app.get("/",(req, res)=>{
-    open("./index.html")
+    window.open("./index.html")
 })
 app.get("/genres", async (req, res) => {
     let genreRequestEndpoint = '/genre/movie/list';
