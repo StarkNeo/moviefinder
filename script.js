@@ -107,7 +107,7 @@ const playBtn = document.getElementById('playBtn');
 
 const getGenres = async () => {
   try {
-    const response = await fetch("http://localhost:3000/genres");
+    const response = await fetch("https://moviefinder-oxca.onrender.com/genres");
     let json = await response.json();
     console.log(json.message);
     populateGenreDropdown(json.message)
@@ -120,7 +120,7 @@ getGenres();
 
 const getMovies = async () => {
   const selectedGenre = getSelectedGenre();
-  let url = "http://localhost:3000/movies";
+  let url = "https://moviefinder-oxca.onrender.com/movies";
   let init = {
     method: 'POST',
     body: JSON.stringify({selectedGenre}),
@@ -142,7 +142,7 @@ const getMovieInfo = async (movie) => {
   console.log(movie);
   let movieId = movie.id;
 
-  let url = "http://localhost:3000/movie/info";
+  let url = "https://moviefinder-oxca.onrender.com/movie/info";
   let init = {
     method: "POST",
     body: JSON.stringify({movieId}),
